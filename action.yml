@@ -44,6 +44,7 @@ runs:
         mkdir repo
     - name: Checkout head branch
       uses: actions/checkout@v3
+      if: false
       with:
         repository: ${{ inputs.full_repository }}
         ref: '${{ github.event.inputs.head_ref }}'
@@ -66,7 +67,7 @@ runs:
         mkdir cm
     - name: Checkout cm repo
       uses: actions/checkout@v3
-      if: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).hasCmRepo == true }}
+      if: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).hasCmRepo == true }} && false
       with:
         repository: '${{ fromJSON(fromJSON(github.event.inputs.client_payload)).owner }}/${{ fromJSON(fromJSON(github.event.inputs.client_payload)).cmRepo }}'
         ref: ${{ fromJSON(fromJSON(github.event.inputs.client_payload)).cmRepoRef }}
